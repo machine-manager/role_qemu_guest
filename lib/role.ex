@@ -1,10 +1,9 @@
 defmodule RoleQemuGuest do
 	def role(_tags \\ []) do
 		%{
-			desired_packages: [
-				# Necessary for the host to be able to shut down the guest (without e.g. ssh)
-				"qemu-guest-agent",
-			],
+			# We could install qemu-guest-agent here, but apparently we do not need it.
+			# `virsh shutdown VMNAME` can shut down a guest just fine as long as 
+			# HandlePowerKey=poweroff is in /etc/systemd/logind.conf
 		}
 	end
 end
